@@ -8,5 +8,14 @@ Feature: Calculate Statistics
         When I calculate the statistics
         Then the minimum should equal ""
         And the maximum should equal ""
-        And the count should equal ""
+        And the count should equal "0"
         And the average should equal ""
+
+    Scenario: List contains one integer
+        Given the list contains "42"
+        When I calculate the statistics
+        Then the minimum should equal "42"
+        And the maximum should equal "42"
+        And the count should equal "1"
+        And the average should equal "42"
+        
