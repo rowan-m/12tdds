@@ -7,11 +7,14 @@ use Behat\Behat\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 
+use Kata\StatisticsCalculator;
+use Kata\Statistics;
+
 //
 // Require 3rd-party libraries here:
 //
-//   require_once 'PHPUnit/Autoload.php';
-//   require_once 'PHPUnit/Framework/Assert/Functions.php';
+require_once __DIR__ . '/../../vendor/phpunit/phpunit/PHPUnit/Autoload.php';
+require_once __DIR__ . '/../../vendor/phpunit/phpunit/PHPUnit/Framework/Assert/Functions.php';
 //
 
 /**
@@ -19,6 +22,10 @@ use Behat\Gherkin\Node\TableNode;
  */
 class FeatureContext extends BehatContext
 {
+    private $elements;
+
+    private $statistics;
+
     /**
      * Initializes context.
      * Every scenario gets it's own context object.
@@ -33,9 +40,9 @@ class FeatureContext extends BehatContext
     /**
      * @Given /^the list contains "([^"]*)"$/
      */
-    public function theListContains($arg1)
+    public function theListContains($elements)
     {
-        throw new PendingException();
+        $this->elements = $elements;
     }
 
     /**
@@ -43,38 +50,39 @@ class FeatureContext extends BehatContext
      */
     public function iCalculateTheStatistics()
     {
-        throw new PendingException();
+        $sc = new StatisticsCalculator($this->elements);
+        $this->statistics = $sc->getStatistics();
     }
 
     /**
      * @Then /^the minimum should equal "([^"]*)"$/
      */
-    public function theMinimumShouldEqual($arg1)
+    public function theMinimumShouldEqual($expectedMinimum)
     {
-        throw new PendingException();
+        assertEquals($expectedMinimum, $this->statistics->getMinimum());
     }
 
     /**
      * @Given /^the maximum should equal "([^"]*)"$/
      */
-    public function theMaximumShouldEqual($arg1)
+    public function theMaximumShouldEqual($expectedMaximum)
     {
-        throw new PendingException();
+        assertEquals($expectedMaximum, $this->statistics->getMaximum());
     }
 
     /**
      * @Given /^the count should equal "([^"]*)"$/
      */
-    public function theCountShouldEqual($arg1)
+    public function theCountShouldEqual($expectedCount)
     {
-        throw new PendingException();
+        assertEquals($expectedCount, $this->statistics->getCount());
     }
 
     /**
      * @Given /^the average should equal "([^"]*)"$/
      */
-    public function theAverageShouldEqual($arg1)
+    public function theAverageShouldEqual($expectedAverage)
     {
-        throw new PendingException();
+        assertEquals($expectedAverage, $this->statistics->getAverage());
     }
 }
