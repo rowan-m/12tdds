@@ -7,8 +7,8 @@ use Behat\Behat\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 
-use Kata\StatisticsCalculator;
-use Kata\IntegerListProvider;
+use Kata\CalcStats\StatisticsCalculator;
+use Kata\CalcStats\IntegerListProvider;
 
 //
 // Require 3rd-party libraries here:

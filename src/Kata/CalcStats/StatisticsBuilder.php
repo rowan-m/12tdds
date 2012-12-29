@@ -1,6 +1,6 @@
 <?php
 
-namespace Kata;
+namespace Kata\CalcStats;
 
 class StatisticsBuilder
 {
