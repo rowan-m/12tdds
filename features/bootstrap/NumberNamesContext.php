@@ -4,6 +4,7 @@ use Behat\Behat\Context\BehatContext;
 use Behat\Behat\Exception\PendingException;
 
 use Kata\NumberNames\Integer;
+use Kata\NumberNames\IntegerToWords;
 
 class NumberNamesContext extends BehatContext
 {
