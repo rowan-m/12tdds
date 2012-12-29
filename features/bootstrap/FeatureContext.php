@@ -23,5 +23,6 @@ class FeatureContext extends BehatContext
     public function __construct(array $parameters)
     {
         $this->useContext('calcstats', new CalcStatsContext());
+        $this->useContext('numbernames', new NumberNamesContext());
     }
 }
