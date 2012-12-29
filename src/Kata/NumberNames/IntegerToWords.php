@@ -4,8 +4,12 @@ namespace Kata\NumberNames;
 
 class IntegerToWords
 {
+    private $uniqueNames = array(
+        0 => 'zero',
+    );
+
     public function convert(Integer $integer)
     {
-        return 'zero';
+        return $this->uniqueNames[$integer->getValue()];
     }
 }

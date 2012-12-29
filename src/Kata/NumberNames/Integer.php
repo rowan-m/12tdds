@@ -10,4 +10,9 @@ class Integer
     {
         $this->integer = (int) $integer;
     }
+
+    public function getValue()
+    {
+        return $this->integer;
+    }
 }
