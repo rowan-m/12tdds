@@ -8,7 +8,7 @@ class NumberNamesContext extends BehatContext
     /**
      * @Given /^the numeric representation (\d+)$/
      */
-    public function theNumericRepresentation($arg1)
+    public function theNumericRepresentation($digits)
     {
         throw new PendingException();
     }
@@ -22,10 +22,11 @@ class NumberNamesContext extends BehatContext
     }
 
     /**
-     * @Then /^the representation in words should be zero$/
+     * @Then /^the representation in words should be "([^"]*)"$/
      */
-    public function theRepresentationInWordsShouldBeZero()
+    public function theRepresentationInWordsShouldBe($words)
     {
         throw new PendingException();
     }
+
 }
