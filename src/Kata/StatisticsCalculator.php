@@ -4,22 +4,26 @@ namespace Kata;
 
 class StatisticsCalculator
 {
-    private $elements;
-
-    public function __construct($elements)
+    public function calculate(IntegerList $elements)
     {
-        $this->elements = $elements;
-    }
+        $array = $elements->getArray();
+        $count = count($array);
+        $average = null;
 
-    public function getStatistics()
-    {
+        if ($count > 0) {
+            $average = array_sum($array) / $count;
+        }
+
+        sort($array, SORT_NUMERIC);
+        $minimum = reset($array);
+        $maximum = end($array);
 
         $builder = new StatisticsBuilder();
         return $builder
-            ->setMinimum($this->elements)
-            ->setMaximum($this->elements)
-            ->setCount(($this->elements) ? 1 : 0)
-            ->setAverage($this->elements)
+            ->setMinimum($minimum)
+            ->setMaximum($maximum)
+            ->setCount($count)
+            ->setAverage($average)
             ->buildStatistics();
     }
 }
