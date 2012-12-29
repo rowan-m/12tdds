@@ -6,6 +6,6 @@ class IntegerToWords
 {
     public function convert(Integer $integer)
     {
-        
+        return 'zero';
     }
 }
