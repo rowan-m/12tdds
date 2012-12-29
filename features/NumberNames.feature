@@ -30,3 +30,14 @@ Feature: Number Names
       | 17     | "seventeen" |
       | 18     | "eighteen"  |
       | 19     | "nineteen"  |
+
+  Scenario Outline: Numbers less than one hundred
+    Given the numeric representation <digits>
+    When I convert the integer
+    Then the representation in words should be <words>
+
+    Examples:
+      | digits | words        |
+      | 21     | "twenty-one" |
+      | 42     | "forty-two"  |
+      | 69     | "sixty-nine" |
