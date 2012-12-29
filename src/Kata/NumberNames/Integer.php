@@ -15,4 +15,14 @@ class Integer
     {
         return $this->integer;
     }
+
+    public function getQuotientFrom($divisor)
+    {
+        return new Integer(floor($this->getValue() / $divisor));
+    }
+
+    public function getRemainderFrom($divisor)
+    {
+        return new Integer($this->getValue() % $divisor);
+    }
 }

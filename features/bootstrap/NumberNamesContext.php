@@ -5,6 +5,8 @@ use Behat\Behat\Exception\PendingException;
 
 use Kata\NumberNames\Integer;
 use Kata\NumberNames\IntegerToWords;
+use Kata\NumberNames\UniqueNames;
+use Kata\NumberNames\MultiplesOfTen;
 
 class NumberNamesContext extends BehatContext
 {
@@ -26,7 +28,7 @@ class NumberNamesContext extends BehatContext
     public function iConvertTheInteger()
     {
         $integer = new Integer($this->digits);
-        $convertor = new IntegerToWords();
+        $convertor = new IntegerToWords(new UniqueNames(), new MultiplesOfTen());
         $this->words = $convertor->convert($integer);
     }
 
