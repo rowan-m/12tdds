@@ -18,4 +18,11 @@ Feature: Calculate Statistics
         And the maximum should equal "42"
         And the count should equal "1"
         And the average should equal "42"
-        
+
+    Scenario: List contains several integers
+        Given the list contains "-22, -9, 6, -39, 100, -89, 30, -28"
+        When I calculate the statistics
+        Then the minimum should equal "-89"
+        And the maximum should equal "100"
+        And the count should equal "8"
+        And the average should equal "-6.375"
