@@ -8,7 +8,7 @@ use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 
 use Kata\StatisticsCalculator;
-use Kata\Statistics;
+use Kata\IntegerListProvider;
 
 //
 // Require 3rd-party libraries here:
@@ -42,7 +42,8 @@ class FeatureContext extends BehatContext
      */
     public function theListContains($elements)
     {
-        $this->elements = $elements;
+        $provider = new IntegerListProvider();
+        $this->elements = $provider->fromString($elements);
     }
 
     /**
@@ -50,8 +51,8 @@ class FeatureContext extends BehatContext
      */
     public function iCalculateTheStatistics()
     {
-        $sc = new StatisticsCalculator($this->elements);
-        $this->statistics = $sc->getStatistics();
+        $sc = new StatisticsCalculator();
+        $this->statistics = $sc->calculate($this->elements);
     }
 
     /**
