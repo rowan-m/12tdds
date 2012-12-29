@@ -3,14 +3,20 @@
 use Behat\Behat\Context\BehatContext;
 use Behat\Behat\Exception\PendingException;
 
+use Kata\NumberNames\Integer;
+
 class NumberNamesContext extends BehatContext
 {
+    private $digits;
+
+    private $words;
+
     /**
      * @Given /^the numeric representation (\d+)$/
      */
     public function theNumericRepresentation($digits)
     {
-        throw new PendingException();
+        $this->digits = $digits;
     }
 
     /**
@@ -18,7 +24,9 @@ class NumberNamesContext extends BehatContext
      */
     public function iConvertTheInteger()
     {
-        throw new PendingException();
+        $integer = new Integer($this->digits);
+        $convertor = new IntegerToWords();
+        $this->words = $convertor->convert($integer);
     }
 
     /**
@@ -26,7 +34,7 @@ class NumberNamesContext extends BehatContext
      */
     public function theRepresentationInWordsShouldBe($words)
     {
-        throw new PendingException();
+        assertEquals($words, $this->words);
     }
 
 }
