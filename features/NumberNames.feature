@@ -52,4 +52,5 @@ Feature: Number Names
       | digits | words                          |
       | 100    | "one hundred"                  |
       | 360    | "three hundred and sixty"      |
+      | 514    | "five hundred and fourteen"    |
       | 999    | "nine hundred and ninety-nine" |
