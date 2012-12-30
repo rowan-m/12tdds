@@ -5,7 +5,6 @@ namespace Kata\NumberNames;
 class IntegerToWords
 {
     private $uniqueNames;
-
     private $multiplesOfTen;
 
     public function __construct(UniqueNames $names, MultiplesOfTen $multiples)
@@ -16,11 +15,29 @@ class IntegerToWords
 
     public function convert(Integer $integer)
     {
-        if ($word = $this->uniqueNames->getWordFor($integer)) {
+        $word = '';
+        $hundreds = $integer->getQuotientFrom(100);
+
+        if ($hundreds->getValue() > 0) {
+            $word .= $this->uniqueNames->getWordFor($hundreds) . ' hundred';
+        }
+
+        $remainder = $integer->getRemainderFrom(100);
+
+        if ($remainder->getValue() === 0 && $integer->getValue() !== 0) {
             return $word;
         }
 
-        $word = $this->multiplesOfTen->getWordForNearestMultiple($integer);
+        if ($word !== '') {
+            $word .= ' and ';
+            $integer = $remainder;
+        }
+
+        if ($uniqueName = $this->uniqueNames->getWordFor($integer)) {
+            return $word . $uniqueName;
+        }
+
+        $word .= $this->multiplesOfTen->getWordForNearestMultiple($integer);
 
         $remainder = $integer->getRemainderFrom(10);
 
