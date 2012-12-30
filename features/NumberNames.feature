@@ -40,6 +40,7 @@ Feature: Number Names
       | digits | words        |
       | 21     | "twenty-one" |
       | 42     | "forty-two"  |
+      | 50     | "fifty"      |
       | 69     | "sixty-nine" |
 
   Scenario Outline: Numbers less than one thousand
