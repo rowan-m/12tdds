@@ -5,6 +5,7 @@ namespace Kata\NumberNames;
 class IntegerToWords
 {
     private $uniqueNames;
+
     private $multiplesOfTen;
 
     public function __construct(UniqueNames $names, MultiplesOfTen $multiples)
