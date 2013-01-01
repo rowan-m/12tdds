@@ -6,7 +6,7 @@ class IntegerListProvider
 {
     public function fromString($stringRepresentation)
     {
-        $integerArray = new IntegerList();
+        $integerList = new IntegerList();
 
         if (trim($stringRepresentation) == '') {
             $array = array();
@@ -15,9 +15,9 @@ class IntegerListProvider
         }
 
         foreach ($array as $element) {
-            $integerArray->append(trim($element));
+            $integerList->append(trim($element));
         }
 
-        return $integerArray;
+        return $integerList;
     }
 }
