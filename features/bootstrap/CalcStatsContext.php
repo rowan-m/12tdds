@@ -10,7 +10,7 @@ class CalcStatsContext extends BehatContext
     private $elements;
 
     private $statistics;
-    
+
     /**
      * @Given /^the list contains "([^"]*)"$/
      */
@@ -34,7 +34,7 @@ class CalcStatsContext extends BehatContext
      */
     public function theMinimumShouldEqual($expectedMinimum)
     {
-        assertEquals($expectedMinimum, $this->statistics->getMinimum());
+        assertEquals($expectedMinimum, $this->statistics->get('minimum'));
     }
 
     /**
@@ -42,7 +42,7 @@ class CalcStatsContext extends BehatContext
      */
     public function theMaximumShouldEqual($expectedMaximum)
     {
-        assertEquals($expectedMaximum, $this->statistics->getMaximum());
+        assertEquals($expectedMaximum, $this->statistics->get('maximum'));
     }
 
     /**
@@ -50,7 +50,7 @@ class CalcStatsContext extends BehatContext
      */
     public function theCountShouldEqual($expectedCount)
     {
-        assertEquals($expectedCount, $this->statistics->getCount());
+        assertEquals($expectedCount, $this->statistics->get('count'));
     }
 
     /**
@@ -58,6 +58,6 @@ class CalcStatsContext extends BehatContext
      */
     public function theAverageShouldEqual($expectedAverage)
     {
-        assertEquals($expectedAverage, $this->statistics->getAverage());
+        assertEquals($expectedAverage, $this->statistics->get('average'));
     }
 }

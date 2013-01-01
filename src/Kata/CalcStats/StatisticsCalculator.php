@@ -18,12 +18,11 @@ class StatisticsCalculator
         $minimum = reset($array);
         $maximum = end($array);
 
-        $builder = new StatisticsBuilder();
-        return $builder
-            ->setMinimum($minimum)
-            ->setMaximum($maximum)
-            ->setCount($count)
-            ->setAverage($average)
-            ->buildStatistics();
+        $statistics = new Statistics();
+        $statistics->add('minimum', $minimum);
+        $statistics->add('maximum', $maximum);
+        $statistics->add('count', $count);
+        $statistics->add('average', $average);
+        return $statistics;
     }
 }

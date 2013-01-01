@@ -4,39 +4,15 @@ namespace Kata\CalcStats;
 
 class Statistics
 {
-    private $minimum;
+    private $collection = array();
 
-    private $maximum;
-
-    private $count;
-
-    private $average;
-
-    public function __construct($minimum, $maximum, $count, $average)
+    public function add($type, $value)
     {
-        $this->minimum = $minimum;
-        $this->maximum = $maximum;
-        $this->count = $count;
-        $this->average = $average;
+        $this->collection[$type] = $value;
     }
 
-    public function getMinimum()
+    public function get($type)
     {
-        return $this->minimum;
-    }
-
-    public function getMaximum()
-    {
-        return $this->maximum;
-    }
-
-    public function getCount()
-    {
-        return $this->count;
-    }
-
-    public function getAverage()
-    {
-        return $this->average;
+        return $this->collection[$type];
     }
 }
