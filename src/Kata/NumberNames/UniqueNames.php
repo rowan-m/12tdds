@@ -5,7 +5,6 @@ namespace Kata\NumberNames;
 class UniqueNames
 {
     private $uniqueNames = array(
-        0 => 'zero',
         1 => 'one',
         2 => 'two',
         3 => 'three',
@@ -27,9 +26,9 @@ class UniqueNames
         19 => 'nineteen',
     );
 
-    public function getWordFor($integer)
+    public function getWordFor(Integer $integer)
     {
-        if ($integer->getValue() < 20) {
+        if (isset($this->uniqueNames[$integer->getValue()])) {
             return $this->uniqueNames[$integer->getValue()];
         }
     }

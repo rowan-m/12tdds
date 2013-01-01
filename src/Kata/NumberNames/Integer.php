@@ -25,4 +25,9 @@ class Integer
     {
         return new Integer($this->getValue() % $divisor);
     }
+
+    public function divideBy($divisor)
+    {
+        return new DivisionResult($this->getQuotientFrom($divisor), $this->getRemainderFrom($divisor));
+    }
 }

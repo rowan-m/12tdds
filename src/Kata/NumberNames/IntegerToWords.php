@@ -15,36 +15,43 @@ class IntegerToWords
 
     public function convert(Integer $integer)
     {
-        $word = '';
-        $hundreds = $integer->getQuotientFrom(100);
-
-        if ($hundreds->getValue() > 0) {
-            $word .= $this->uniqueNames->getWordFor($hundreds) . ' hundred';
+        if ($integer->getValue() == 0) {
+            return 'zero';
         }
 
-        $remainder = $integer->getRemainderFrom(100);
+        $words = new NumberName();
 
-        if ($remainder->getValue() === 0 && $integer->getValue() !== 0) {
-            return $word;
+        do {
+            $thousands = $integer->divideBy(1000);
+            $hundreds = $this->buildHundredsGroup($thousands->getRemainder()->divideBy(100));
+            $words->addGroup($hundreds);
+            $integer = $thousands->getQuotient();
+        } while ($integer->getValue() > 0);
+
+        return $words;
+    }
+
+    public function buildHundredsGroup(DivisionResult $hundreds)
+    {
+        $hundredsWord = '';
+
+        if ($hundreds->getQuotient()->getValue() > 0) {
+            $hundredsWord = $this->uniqueNames->getWordFor($hundreds->getQuotient()) . ' hundred';
         }
 
-        if ($word !== '') {
-            $word .= ' and ';
-            $integer = $remainder;
+        $tens = $hundreds->getRemainder()->divideBy(10);
+        $tensWord = '';
+
+        if ($tens->getQuotient()->getValue() > 1) {
+            $tensWord = $this->multiplesOfTen->getWordFor($tens->getQuotient());
         }
 
-        if ($uniqueName = $this->uniqueNames->getWordFor($integer)) {
-            return $word . $uniqueName;
+        if ($hundreds->getRemainder()->getValue() < 20) {
+            $onesWord = $this->uniqueNames->getWordFor($hundreds->getRemainder());
+        } else {
+            $onesWord = $this->uniqueNames->getWordFor($tens->getRemainder());
         }
 
-        $word .= $this->multiplesOfTen->getWordForNearestMultiple($integer);
-
-        $remainder = $integer->getRemainderFrom(10);
-
-        if ($remainder->getValue() > 0) {
-            $word .= '-' . $this->uniqueNames->getWordFor($remainder);
-        }
-
-        return $word;
+        return new HundredsGroup($hundredsWord, $tensWord, $onesWord);
     }
 }

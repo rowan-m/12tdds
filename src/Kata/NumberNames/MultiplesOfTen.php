@@ -15,9 +15,8 @@ class MultiplesOfTen
         9 => 'ninety',
     );
 
-    public function getWordForNearestMultiple(Integer $integer)
+    public function getWordFor(Integer $integer)
     {
-        $quotient = $integer->getQuotientFrom(10);
-        return $this->multiplesOfTen[$quotient->getValue()];
+        return $this->multiplesOfTen[$integer->getValue()];
     }
 }
