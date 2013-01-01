@@ -8,8 +8,6 @@ class NumberName
 
     private $index = 0;
 
-    private $requiresAndSeparator = false;
-
     private $groupNames = array(
         1 => 'thousand',
         2 => 'million',
