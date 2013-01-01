@@ -6,17 +6,16 @@ class StatisticsCalculator
 {
     public function calculate(IntegerList $elements)
     {
-        $array = $elements->getArray();
-        $count = count($array);
+        $count = $elements->count();
         $average = null;
 
         if ($count > 0) {
-            $average = array_sum($array) / $count;
+            $average = $elements->sum() / $count;
         }
 
-        sort($array, SORT_NUMERIC);
-        $minimum = reset($array);
-        $maximum = end($array);
+        $elements = $elements->sort();
+        $minimum = $elements->first();
+        $maximum = $elements->last();
 
         $statistics = new Statistics();
         $statistics->add('minimum', $minimum);
