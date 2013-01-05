@@ -47,10 +47,10 @@ class IntegerToWords
             $tensWord = $this->multiplesOfTen->getWordFor($tens->getQuotient());
         }
 
+        $onesWord = $this->uniqueNames->getWordFor($tens->getRemainder());
+
         if ($hundreds->getRemainder()->getValue() < 20) {
             $onesWord = $this->uniqueNames->getWordFor($hundreds->getRemainder());
-        } else {
-            $onesWord = $this->uniqueNames->getWordFor($tens->getRemainder());
         }
 
         return new HundredsGroup($hundredsWord, $tensWord, $onesWord);
