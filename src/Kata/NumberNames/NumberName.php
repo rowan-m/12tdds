@@ -24,7 +24,7 @@ class NumberName
 
             $separator = ', ';
 
-            if ($this->index > 0 && strpos($this->name, ' and ') === false) {
+            if (strpos($this->name, ' and ') === false) {
                 $separator = ' and ';
             }
 
